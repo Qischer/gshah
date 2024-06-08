@@ -56,11 +56,7 @@ func Display(b *BitBoard) {
     mask = mask << 1
   }
 
-  var tmp DisplayPiece = WPawn
-  sq[1] = tmp.String()
-  
-  fmt.Println(sq)
-  //printBoard(sq)
+  printBoard(sq)
   //fmt.Println(sq)
 
   /* fmt.Printf(`
@@ -98,53 +94,53 @@ func printBoard(pieces [64]string) {
   }
 }
 
-func match(b *BitBoard, pos uint64) DisplayPiece {
+func match(b *BitBoard, mask uint64) DisplayPiece {
   
-  if b.WPawns & pos == 1 {
+  if b.WPawns & mask == mask {
     return WPawn
   }
 
-  if b.WKnights & pos == 1 {
+  if b.WKnights & mask == mask {
     return WKnight
   }
 
-  if b.WBishops & pos == 1 {
+  if b.WBishops & mask == mask {
      return WBishop
   }
   
-  if b.WRooks & pos == 1 {
+  if b.WRooks & mask == mask {
     return WRook
   }
 
-  if b.WQueens & pos  == 1 {
+  if b.WQueens & mask  == mask {
     return WQueen
   }
 
-  if b.WKing & pos == 1 {
+  if b.WKing & mask == mask {
     return WKing
   }
 
-  if b.WPawns & pos == 1 {
+  if b.WPawns & mask == mask {
     return WPawn
   }
 
-  if b.WKnights & pos == 1 {
+  if b.WKnights & mask == mask {
     return WKnight
   }
 
-  if b.WBishops & pos == 1 {
+  if b.WBishops & mask == mask {
      return WBishop
   }
   
-  if b.WRooks & pos == 1 {
+  if b.WRooks & mask == mask {
     return WRook
   }
 
-  if b.WQueens & pos  == 1 {
+  if b.WQueens & mask  == mask {
     return WQueen
   }
 
-  if b.WKing & pos == 1 {
+  if b.WKing & mask == mask {
     return WKing
   }
 

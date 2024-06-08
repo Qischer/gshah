@@ -7,7 +7,7 @@ import (
 func main() {
   
   b := &board.BitBoard{
-    WRooks: 5,
+    WRooks: 129,
   }
   board.Display(b)
 }
