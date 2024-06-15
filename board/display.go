@@ -11,14 +11,12 @@ const (
   WRook
   WQueen
   WKing
-
   BPawn
   BKnight
   BBishop
   BRook
   BQueen
   BKing
-
   EMPTY
 )
 
@@ -142,6 +140,54 @@ func match(b *BitBoard, mask uint64) DisplayPiece {
 
   if b.WKing & mask == mask {
     return WKing
+  }
+
+  if b.BPawns & mask == mask {
+    return BPawn
+  }
+
+  if b.BKnights & mask == mask {
+    return BKnight
+  }
+
+  if b.BBishops & mask == mask {
+     return BBishop
+  }
+  
+  if b.BRooks & mask == mask {
+    return BRook
+  }
+
+  if b.BQueens & mask  == mask {
+    return BQueen
+  }
+
+  if b.BKing & mask == mask {
+    return BKing
+  }
+
+  if b.BPawns & mask == mask {
+    return BPawn
+  }
+
+  if b.BKnights & mask == mask {
+    return BKnight
+  }
+
+  if b.BBishops & mask == mask {
+     return BBishop
+  }
+  
+  if b.BRooks & mask == mask {
+    return BRook
+  }
+
+  if b.BQueens & mask  == mask {
+    return BQueen
+  }
+
+  if b.BKing & mask == mask {
+    return BKing
   }
 
   return EMPTY

@@ -6,10 +6,6 @@ import (
 
 func main() {
   
-  b := &board.BitBoard{
-    WRooks: 129,
-    WKnights: 66,
-    WBishops: 36,
-  }
+  b := board.NewDefaultBoard()
   board.Display(b)
-}
+ }
