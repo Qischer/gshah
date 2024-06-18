@@ -16,6 +16,10 @@ type BitBoard struct {
   BKing uint64
 }
 
+func NewEmptyBoard() *BitBoard {
+  return &BitBoard {}
+}
+
 func NewDefaultBoard() *BitBoard {
 
   return &BitBoard{
@@ -26,9 +30,9 @@ func NewDefaultBoard() *BitBoard {
     WKing: 1 << 60,
     WPawns: (1 << 8-1) << 48,
 
-    BRooks: 1 + 1 << 8,
-    BKnights: 1 << 1 + 1 << 7,
-    BBishops: 1 << 2 + 1 << 6,
+    BRooks: 1 + 1 << 7,
+    BKnights: 1 << 1 + 1 << 6,
+    BBishops: 1 << 2 + 1 << 5,
     BQueens: 1 << 3,
     BKing: 1 << 4,
     BPawns : (1 << 8-1) << 8,

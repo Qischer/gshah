@@ -11,12 +11,14 @@ const (
   WRook
   WQueen
   WKing
+
   BPawn
   BKnight
   BBishop
   BRook
   BQueen
   BKing
+
   EMPTY
 )
 
@@ -72,6 +74,8 @@ func Display(b *BitBoard) {
      a b c d e f g h
 
   `,) */
+
+  fmt.Print("   a b c d e f g h\n")
 }
 
 func printBoard(pieces [64]string) {
