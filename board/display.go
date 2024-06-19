@@ -4,24 +4,6 @@ import (
 	"fmt"
 )
 
-const (
-  WPawn = iota
-  WKnight
-  WBishop
-  WRook
-  WQueen
-  WKing
-
-  BPawn
-  BKnight
-  BBishop
-  BRook
-  BQueen
-  BKing
-
-  EMPTY
-)
-
 type DisplayPiece int 
 var icons = []string {
   WPawn: "♙",
@@ -57,23 +39,6 @@ func Display(b *BitBoard) {
   }
 
   printBoard(sq)
-  //fmt.Println(sq)
-
-  /* fmt.Printf(`
-     a b c d e f g h
-   +----------------+
-  8| %v %v %v %v %v %v n r |8
-  7| p p p p p p p p |7
-  6| . . . . . . . . |6
-  5| . . . . . . . . |5
-  4| . . . . . . . . |4
-  3| . . . . . . . . |3
-  2| P P P P P P P P |2
-  1| R N B Q K B N ♟︎ |1
-   +----------------+
-     a b c d e f g h
-
-  `,) */
 
   fmt.Print("   a b c d e f g h\n")
 }
@@ -97,101 +62,12 @@ func printBoard(pieces [64]string) {
 }
 
 func match(b *BitBoard, mask uint64) DisplayPiece {
-  
-  if b.WPawns & mask == mask {
-    return WPawn
-  }
-
-  if b.WKnights & mask == mask {
-    return WKnight
-  }
-
-  if b.WBishops & mask == mask {
-     return WBishop
-  }
-  
-  if b.WRooks & mask == mask {
-    return WRook
-  }
-
-  if b.WQueens & mask  == mask {
-    return WQueen
-  }
-
-  if b.WKing & mask == mask {
-    return WKing
-  }
-
-  if b.WPawns & mask == mask {
-    return WPawn
-  }
-
-  if b.WKnights & mask == mask {
-    return WKnight
-  }
-
-  if b.WBishops & mask == mask {
-     return WBishop
-  }
-  
-  if b.WRooks & mask == mask {
-    return WRook
-  }
-
-  if b.WQueens & mask  == mask {
-    return WQueen
-  }
-
-  if b.WKing & mask == mask {
-    return WKing
-  }
-
-  if b.BPawns & mask == mask {
-    return BPawn
-  }
-
-  if b.BKnights & mask == mask {
-    return BKnight
-  }
-
-  if b.BBishops & mask == mask {
-     return BBishop
-  }
-  
-  if b.BRooks & mask == mask {
-    return BRook
-  }
-
-  if b.BQueens & mask  == mask {
-    return BQueen
-  }
-
-  if b.BKing & mask == mask {
-    return BKing
-  }
-
-  if b.BPawns & mask == mask {
-    return BPawn
-  }
-
-  if b.BKnights & mask == mask {
-    return BKnight
-  }
-
-  if b.BBishops & mask == mask {
-     return BBishop
-  }
-  
-  if b.BRooks & mask == mask {
-    return BRook
-  }
-
-  if b.BQueens & mask  == mask {
-    return BQueen
-  }
-
-  if b.BKing & mask == mask {
-    return BKing
+ 
+  var piece DisplayPiece
+  for piece = 0; int(piece) < len(b.Pieces); piece++ {
+    if b.Pieces[piece] & mask == mask {
+      return piece
+    }
   }
 
   return EMPTY

@@ -11,17 +11,20 @@ import (
 
 func main() {
   
-  b := board.NewEmptyBoard()
-  
+  b := board.NewDefaultBoard()
+  //b.BPawns = 1
+
+  board.Display(b)
+
   reader := bufio.NewReader(os.Stdin)
   for {
-    str, _, err := reader.ReadLine()
+    str, err := reader.ReadString('\n')
 
     if err != nil {
       log.Fatal("Input error")
     }
 
-    b.BPawns = game.Translate(str[0:2]) 
+    game.Move(str, b) 
 
     board.Display(b)
     fmt.Println(str)
