@@ -21,10 +21,12 @@ func translate(b []byte) uint64 {
   return bit
 } 
 
-func checkPiece() {
+func checkPiece(posByte []byte, b *board.BitBoard) {
   //TODO:
+  mask := translate(posByte)  
+  piece := board.Match(b, mask)
 
-
+  fmt.Println(piece.GetName())
 }
 
 func movePiece(fromByte []byte, toByte []byte, b *board.BitBoard) {
@@ -32,9 +34,15 @@ func movePiece(fromByte []byte, toByte []byte, b *board.BitBoard) {
   fromMask := translate(fromByte)
   toMask := translate(toByte)
 
-  _ = fromMask ^ toMask
+  fromTo := fromMask ^ toMask
+ 
+  piece := board.Match(b, fromMask)
+  if piece == board.EMPTY {
+    fmt.Println("No Piece to Move")
+    return
+  }
 
-  //Update board
+  b.Pieces[piece] ^= fromTo
   //b.BPawns ^= fromTo
 
 } 
@@ -46,15 +54,13 @@ func Move(str string, b *board.BitBoard) {
   switch len(move_bytes) {
     case 1: 
       fmt.Println("Check Piece")
+      checkPiece(move_bytes[0], b)
       break
     case 2: 
       fmt.Println("Make move")
       movePiece(move_bytes[0], move_bytes[1], b)
       break
   }
-
-
-  return
 }
 
 func parseStr(str string) [][]byte {

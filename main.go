@@ -4,7 +4,6 @@ import (
 	"Qischer/gshah/board"
 	"Qischer/gshah/game"
 	"bufio"
-	"fmt"
 	"log"
 	"os"
 )
@@ -15,7 +14,6 @@ func main() {
   //b.BPawns = 1
 
   board.Display(b)
-
   reader := bufio.NewReader(os.Stdin)
   for {
     str, err := reader.ReadString('\n')
@@ -27,6 +25,5 @@ func main() {
     game.Move(str, b) 
 
     board.Display(b)
-    fmt.Println(str)
   }
  }

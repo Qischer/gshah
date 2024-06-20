@@ -18,6 +18,29 @@ const (
   EMPTY
 )
 
+var pieceName = []string{
+  WPawn: "White Pawn",
+  WKnight: "White Knight",
+  WBishop: "White Bishop",
+  WRook: "White Rook",
+  WQueen: "White Queen",
+  WKing: "White King",
+
+  BPawn: "Black Pawn",
+  BKnight: "Black Knight",
+  BBishop: "Black Bishop",
+  BRook: "Black Rook",
+  BQueen: "Black Queen",
+  BKing: "Black King",
+
+  EMPTY: "EMPTY",
+}
+
+func (d DisplayPiece) GetName() string {
+
+  return pieceName[d]
+}
+
 type BitBoard struct {
   Pieces [12]uint64
 

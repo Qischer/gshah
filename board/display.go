@@ -32,7 +32,7 @@ func Display(b *BitBoard) {
 
   var mask uint64 = 1
   for i:=0; i < len(sq); i++ {
-    piece := match(b, mask)
+    piece := Match(b, mask)
     
     sq[i] = piece.String()
     mask = mask << 1
@@ -61,7 +61,7 @@ func printBoard(pieces [64]string) {
   }
 }
 
-func match(b *BitBoard, mask uint64) DisplayPiece {
+func Match(b *BitBoard, mask uint64) DisplayPiece {
  
   var piece DisplayPiece
   for piece = 0; int(piece) < len(b.Pieces); piece++ {
