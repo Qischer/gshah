@@ -61,14 +61,3 @@ func printBoard(pieces [64]string) {
   }
 }
 
-func Match(b *BitBoard, mask uint64) DisplayPiece {
- 
-  var piece DisplayPiece
-  for piece = 0; int(piece) < len(b.Pieces); piece++ {
-    if b.Pieces[piece] & mask == mask {
-      return piece
-    }
-  }
-
-  return EMPTY
-}

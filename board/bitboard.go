@@ -41,18 +41,33 @@ func (d DisplayPiece) GetName() string {
   return pieceName[d]
 }
 
+func Match(b *BitBoard, mask uint64) DisplayPiece {
+ 
+  var piece DisplayPiece
+  for piece = 0; int(piece) < len(b.Pieces); piece++ {
+    if b.Pieces[piece] & mask == mask {
+      return piece
+    }
+  }
+
+  return EMPTY
+}
+
 type BitBoard struct {
   Pieces [12]uint64
-
+  Empty uint64
 }
 
 func NewEmptyBoard() *BitBoard {
-  return &BitBoard {}
+  b := &BitBoard {}
+  b.UpdateEmptySet()
+
+  return b
 }
 
 func NewDefaultBoard() *BitBoard {
 
-  return &BitBoard{
+  b := &BitBoard{
     Pieces : [12]uint64 {
       WRook: 1 << 63 + 1 << 56,
       WKnight: 1 << 62 + 1 << 57,
@@ -69,5 +84,19 @@ func NewDefaultBoard() *BitBoard {
       BPawn: (1 << 8-1) << 8,
     },
   }
+
+  b.UpdateEmptySet()
+
+  return b
+}
+
+func (b *BitBoard) UpdateEmptySet() {
+  
+  empty := uint64(0)
+  for p := 0; p < len(b.Pieces); p++ {
+    empty |= b.Pieces[p]   
+  }
+
+  b.Empty = empty
 }
 

@@ -10,8 +10,8 @@ import (
 
 func main() {
   
-  b := board.NewDefaultBoard()
-  //b.BPawns = 1
+  b := board.NewEmptyBoard()
+  b.Pieces[board.BKing] = 1 << 28
 
   board.Display(b)
   reader := bufio.NewReader(os.Stdin)

@@ -3,6 +3,7 @@ package game
 import (
 	"Qischer/gshah/board"
 	"fmt"
+	"strconv"
 	"strings"
 )
 
@@ -22,11 +23,15 @@ func translate(b []byte) uint64 {
 } 
 
 func checkPiece(posByte []byte, b *board.BitBoard) {
-  //TODO:
+
   mask := translate(posByte)  
   piece := board.Match(b, mask)
 
   fmt.Println(piece.GetName())
+
+  legalMoves := generate(piece, mask)
+  fmt.Println(strconv.FormatInt(int64(legalMoves), 2))
+  b.Pieces[board.WPawn] = legalMoves
 }
 
 func movePiece(fromByte []byte, toByte []byte, b *board.BitBoard) {
@@ -36,13 +41,20 @@ func movePiece(fromByte []byte, toByte []byte, b *board.BitBoard) {
 
   fromTo := fromMask ^ toMask
  
-  piece := board.Match(b, fromMask)
-  if piece == board.EMPTY {
+  fromPiece := board.Match(b, fromMask)
+  toPiece := board.Match(b, toMask)
+
+  if fromPiece == board.EMPTY {
     fmt.Println("No Piece to Move")
     return
   }
 
-  b.Pieces[piece] ^= fromTo
+  //Capture
+  if toPiece != board.EMPTY {
+    b.Pieces[toPiece] ^= toMask
+  }
+
+  b.Pieces[fromPiece] ^= fromTo
   //b.BPawns ^= fromTo
 
 } 
